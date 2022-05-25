@@ -1,0 +1,17 @@
+weather:
+  # Get weather - collects data from **google search** currently.
+  # If the results are for the wrong city, you can try adding the
+  # country or state name to the var, just like you would when using google search.
+  city: "London, UK"
+
+  celsius: true
+
+# Each service needs a name and url, and optionally an icon.
+# The app currently only supports simpleicons: https://simpleicons.org/
+services:
+  - name: jellyfin
+    url: https://jelly.sbond.co
+    icon: jellyfin
+
+  - name: seafile
+    url: https://seafile.sbond.co

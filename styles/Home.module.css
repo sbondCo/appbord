@@ -1,0 +1,30 @@
+.header {
+  display: flex;
+  flex-flow: row;
+}
+
+.header .weather {
+  margin-left: auto;
+  display: flex;
+  flex-flow: row;
+}
+
+.search {
+  position: relative;
+  border-radius: 8px;
+}
+
+.search input {
+  width: 100%;
+  padding: 15px;
+  border: unset;
+  border-radius: 8px;
+  outline: unset;
+  font-family: 'Work Sans', sans-serif;
+}
+
+.search img {
+  position: absolute;
+  right: 10px;
+  top: 25%;
+}
