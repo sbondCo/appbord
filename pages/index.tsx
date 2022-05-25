@@ -61,7 +61,12 @@ const Home: NextPage = ({ services, helloMsg, weather }: InferGetStaticPropsType
 
       <div className={styles.header}>
         <h1>{helloMsg}</h1>
-        <h1 className={styles.weather} title={`In ${weather.celsius ? "celsius (°C)" : "fahrenheit (°F)"}`}>
+        <h1
+          className={styles.weather}
+          title={`In ${weather.location ? weather.location : "unknown location"} using ${
+            weather.celsius ? "celsius (°C)" : "fahrenheit (°F)"
+          }`}
+        >
           {weather.temp && weather.temp + "°"}
         </h1>
       </div>
