@@ -25,7 +25,6 @@ fs.watchFile("config.yml", (curr, prev) => {
     const http = require("http");
     const req = http.get(
       {
-        // href: `http://localhost:3000/api/revalidate?api_key=${encodeURIComponent(conf.api_key)}`,
         hostname: "127.0.0.1",
         port: 3000,
         path: `/api/revalidate?api_key=${encodeURIComponent(conf.api_key)}`

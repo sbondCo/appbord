@@ -1,0 +1,12 @@
+version: "3.9"
+
+# To test prod
+services:
+  appbord:
+    build: .
+    container_name: appbord
+    volumes:
+      - ./config.yml:/app/config.yml
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
