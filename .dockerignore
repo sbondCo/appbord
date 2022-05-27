@@ -2,6 +2,5 @@ node_modules
 .next
 .git*
 
-config.example.yml
 LICENSE
 README.md
