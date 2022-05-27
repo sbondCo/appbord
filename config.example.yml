@@ -17,9 +17,6 @@ weather:
 # Each service needs a name and url, and optionally an icon.
 # The app currently only supports simpleicons: https://simpleicons.org/
 services:
-  - name: jellyfin
-    url: https://jelly.sbond.co
-    icon: jellyfin
-
-  - name: seafile
-    url: https://seafile.sbond.co
+  - name: GitHub
+    url: https://github.com/IRHM/appbord
+    icon: github
