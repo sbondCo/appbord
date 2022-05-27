@@ -1,8 +1,9 @@
 name: Build and push AppBord docker image
 
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - v*
 
 env:
   REGISTRY: ghcr.io
@@ -40,3 +41,15 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}, latest
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Create GitHub release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          body: |
+            # Changes
+          draft: true
+          prerelease: false
