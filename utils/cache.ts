@@ -1,13 +1,13 @@
 import NodeCache from "node-cache";
 
-let appCache: NodeCache;
+let _cache: NodeCache;
 
 export function getCache() {
-  if (!appCache) {
-    appCache = new NodeCache({ maxKeys: 1 });
+  if (!_cache) {
     console.debug("App cache not set, creating...");
-    return appCache;
-  } else {
-    return appCache;
+    _cache = new NodeCache({ maxKeys: 1 });
+    return _cache;
   }
+
+  return _cache;
 }

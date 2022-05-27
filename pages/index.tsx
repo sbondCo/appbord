@@ -1,17 +1,15 @@
 import type { GetStaticProps, NextPage, InferGetStaticPropsType } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import * as fs from "fs";
-import YAML from "yaml";
 import { useState } from "react";
 import { Service } from "../utils/types";
 import ServicesList from "../components/ServicesList";
 import fetchWeather from "../utils/weather";
+import { getConf } from "../utils/conf";
 
 export const getStaticProps: GetStaticProps = async (context) => {
   // Get services from conf.
-  const confData = fs.readFileSync("config.yml");
-  const conf = YAML.parse(confData.toString());
+  const conf = getConf();
   const services: Service[] = conf.services;
 
   // Get hello msg
@@ -80,7 +78,7 @@ const Home: NextPage = ({ services, helloMsg, weather }: InferGetStaticPropsType
           onKeyUp={search}
           autoComplete="off"
         />
-        <img src="search.svg" alt="" />
+        <img src="/search.svg" alt="" />
       </div>
 
       {sortedServices.length > 0 ? (

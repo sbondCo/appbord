@@ -1,9 +1,17 @@
+# API key used in configWatcher to revalidate the dashboard.
+# **Make sure this is set to a long random string to ensure no
+# one else can access the revalidation api endpoint.**
+api_key: "PLEASE_SET-THIS-TO-SOMETHING_SECURE"
+
 weather:
   # Get weather - collects data from **google search** currently.
   # If the results are for the wrong city, you can try adding the
   # country or state name to the var, just like you would when using google search.
   city: "London, UK"
 
+  # WEATHER the dashboard should use celsius (true) or fahrenheit (false).
+  # If you hover over the tempurate in the dashboard for long enough, you can
+  # make sure weather data is in the correct unit and location.
   celsius: true
 
 # Each service needs a name and url, and optionally an icon.

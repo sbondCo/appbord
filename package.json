@@ -5,9 +5,9 @@
   "description": "App Dashboard",
   "repository": "https://github.com/IRHM/appbord",
   "scripts": {
-    "dev": "next dev",
+    "dev": "NODE_ENV=development node configWatcher.js & next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_ENV=production node configWatcher.js & next start",
     "lint": "next lint"
   },
   "dependencies": {
