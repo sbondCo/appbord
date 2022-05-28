@@ -8,6 +8,7 @@ export type Service = {
   name: string;
   url: string;
   icon?: string;
+  new_tab?: boolean;
 };
 
 export type Weather = {

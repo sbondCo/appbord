@@ -38,6 +38,10 @@ services:
   - name: GitHub
     url: https://github.com/IRHM/appbord
     icon: github
+
+  - name: Issues
+    url: https://github.com/IRHM/appbord/issues
+    new_tab: true
 ```
 
 ## Docker

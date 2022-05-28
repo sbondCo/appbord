@@ -11,7 +11,7 @@ export default function ServicesList({ services }: ServicesListProps) {
       {services.map(
         (s: Service) =>
           s.name && (
-            <a href={s.url} className="upOnHover" key={s.name}>
+            <a href={s.url} target={s.new_tab ? "_blank" : "_self"} className="upOnHover" key={s.name}>
               <i className={"si si-" + s.icon}></i>
               <p>{s.name}</p>
             </a>
