@@ -5,10 +5,10 @@
 
 .services a {
   display: flex;
+  flex: 0 0 calc(50% - 13px);
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  width: 287px;
   height: 120px;
   color: #000;
   background-color: #fff;
