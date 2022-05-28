@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   appbord:
-    image: ghcr.io/irhm/appbord:master
+    image: ghcr.io/irhm/appbord:latest
     container_name: appbord
     volumes:
       - ./config.yml:/app/config.yml
