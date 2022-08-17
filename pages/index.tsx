@@ -46,7 +46,7 @@ const Home: NextPage = ({ services, helloMsg, weather }: InferGetStaticPropsType
 
   const search = () => {
     // Filter through all services and set sortedServices if any matched
-    setSortedServices(services.filter((e: Service) => e.name.includes(searchBarVal)));
+    setSortedServices(services.filter((e: Service) => e.name.toLowerCase().includes(searchBarVal.toLowerCase())));
   };
 
   return (
