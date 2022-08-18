@@ -6,11 +6,61 @@ import { Service } from "../utils/types";
 import ServicesList from "../components/ServicesList";
 import fetchWeather from "../utils/weather";
 import { getConf } from "../utils/conf";
+import axios from "axios";
+import { parse } from "node-html-parser";
 
 export const getStaticProps: GetStaticProps = async (context) => {
   // Get services from conf.
   const conf = getConf();
   const services: Service[] = conf.services;
+
+  for (const sk in services) {
+    const serv = services[sk];
+
+    // Fetch favicon for site if set to
+    if (serv.use_favi && serv.url) {
+      axios
+        .get(serv.url)
+        .then((res) => {
+          const dom = parse(res.data);
+          const links = dom.getElementsByTagName("link");
+          console.log(links);
+          const favis = [];
+          for (var i = 0, n = links.length; i < n; i++) {
+            try {
+              let link = links[i];
+
+              if (
+                link.getAttribute("rel") == "icon" ||
+                link.getAttribute("rel") == "shortcut icon" ||
+                link.getAttribute("rel") == "apple-touch-icon"
+              ) {
+                let href = link.getAttribute("href");
+                if (!href) continue;
+                favis.push({
+                  href: new URL(href, serv.url),
+                  sizes: Number(link.getAttribute("sizes")?.split("x")[0]) || 0
+                });
+              }
+            } catch (err) {
+              console.error(`Caught error collecting favicons for ${serv.url}`, err);
+            }
+          }
+          let bestFavi = favis.reduce((max, obj) => {
+            if (!obj.sizes) {
+              return max;
+            }
+
+            return obj.sizes > max.sizes ? obj : max;
+          });
+          console.log("bestFavi", bestFavi);
+          if (bestFavi) serv.icon = bestFavi.href.href;
+        })
+        .catch((err) => {
+          console.error(`Failed attempting to fetch favicon from ${serv.name}:`, err);
+        });
+    }
+  }
 
   // Get hello msg
   const hour = new Date().getHours();
@@ -78,6 +128,7 @@ const Home: NextPage = ({ services, helloMsg, weather }: InferGetStaticPropsType
           onKeyUp={search}
           autoComplete="off"
         />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/search.svg" alt="" />
       </div>
 
@@ -85,7 +136,7 @@ const Home: NextPage = ({ services, helloMsg, weather }: InferGetStaticPropsType
         <ServicesList services={sortedServices} />
       ) : (
         <>
-          <h2 className="error">Couldn't find any services!</h2>
+          <h2 className="error">Couldn&apos;t find any services!</h2>
           <ServicesList services={services} />
         </>
       )}

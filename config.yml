@@ -24,3 +24,7 @@ services:
   - name: Issues
     url: https://github.com/IRHM/appbord/issues
     new_tab: true
+
+  - name: All zero stargazers
+    url: https://github.com/IRHM/appbord/stargazers
+    use_favi: true
